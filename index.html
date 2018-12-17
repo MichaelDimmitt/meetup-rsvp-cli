@@ -24,7 +24,7 @@
                   var el = $("#events"), buff = [];
                   console.log('el', el)
                   $.map(evts.results, function(e) {
-                      if(["RubyJax", "Jax Code And Coffee"].includes(e.group.name)) {
+                      if(["RubyJax"].includes(e.group.name)) { // ["RubyJax", "Jax Code And Coffee"]
                         $.ajax({
                             type: "POST",
                             cache: false,
