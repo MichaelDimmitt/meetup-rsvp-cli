@@ -31,7 +31,17 @@
                   var el = $("#events"), buff = [];
                   console.log('el', el)
                   $.map(evts.results, function(e) {
-                      buff.push('<li>' + e.name.link(e.short_link) + " " + e.id.link(e.short_link) + '</li>');
+                      if(["RubyJax", "Jax Code And Coffee"].includes(e.group.name)) {
+                        $.ajax({
+                            type: "POST",
+                            cache: false,
+                            async: true,
+                            url: MEETUP_API_RSVP_URL + token ,
+                            crossDomain: true,
+                            data: {rsvp:'yes', event_id: e.id},
+                        });
+                        buff.push('<li>' + e.name.link(e.short_link) + " " + e.id.link(e.short_link) + '</li>');
+                      }
                   });
                   console.log('el2', el)
                   el.append(buff.join(''));
