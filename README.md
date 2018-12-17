@@ -1,34 +1,15 @@
-# Meetup oauth2 sdk starter kit
+# RubyJax next ten rsvp subscriber
 
-Prior to doing this, you'll need to get your Meetup Consumer Key at: https://secure.meetup.com/meetup_api/oauth_consumers/
-As well, you'll need to test this on a server that resolves to the "Redirect URI" specified on your configured OAuth Consumer
+### If you are a member of Code and Coffee or Open Hax
 
-Example usage (for latest working example see index.html)
+### go to this website you will be automatically rsvp'ed yes to a max of 10 and a min of 0 upcoming rubyJax and Code and Coffee events
 
-    <html>
-      <head>
-        <script type="text/javascript" src="jquery.min.js"></script>
-        <script type="text/javascript" src="mu.api.js"></script>
-        <script type="text/javascript">
-          api = mu.Api({
-            clientId: "YOUR_MEETUP_CONSUMER_KEY"
-            , onMember: function(member, token) {
-              alert("we're in");
-            }
-          };
-          $("#login").click(function(e) {
-            e.preventDefault();
-            api.login();
-            return false;
-          })
-          $("#logout").click(function(e){
-            e.preventDefault();
-            api.logout(function(){
-              alert("all clear");
-            });
-            return false;
-          });
-      });
-      </head>
-      <body></body>
-    </html>
+## Interface Plan, so that a user can:
+1) Auto rsvp a SELECTion of 10 meetups from RubyJax WHERE meetup name == "OpenHax"
+<br/>This could return 8 meetups that are rsvp'd if say there were 2 events that were not OpenHax but rather lectures.
+
+2) "Yes" and "No" button
+<br/> to mass rsvp yes
+<br/> to mass rsvp next ten no
+
+3) Edit meetups button, for adding/subtracting additional meetups.
