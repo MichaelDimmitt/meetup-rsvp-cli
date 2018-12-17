@@ -18,14 +18,6 @@
               $.post( "ajax/test.html", function( data ) {
                   $( ".result" ).html( data );
               });
-              $.ajax({
-                type: "POST",
-                cache: false,
-                async: true,
-                url: MEETUP_API_RSVP_URL + token ,
-                crossDomain: true,
-                data: {rsvp:'no', event_id: 'gqnjlqyxqbdc'},
-              });
               $.getJSON(MEETUP_API_EVENTS_URL + token +
                   "&member_id=self&fields=short_link&page=10&callback=?", function(evts) {
                   console.log(evts)
@@ -71,8 +63,9 @@
   </head>
   <body>
     <div id="container">
-      <h1>Meetup oauth2 js starter kit</h1>
+      <h1>RubyJax next ten rsvp subscriber</h1>
       <a id="connect" href="#">Connect with Meetup</a>
+      <div id="rsvpButtons"></div>
       <div id="member"></div>
       <ul id="events"></ul>
     </div>
