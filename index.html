@@ -19,7 +19,7 @@
                   $( ".result" ).html( data );
               });
               $.getJSON(MEETUP_API_EVENTS_URL + token +
-                  "&member_id=self&fields=short_link&page=10&callback=?", function(evts) {
+                  "&group_urlname=RubyJax&page=10&callback=?", function(evts) {
                   console.log(evts)
                   var el = $("#events"), buff = [];
                   console.log('el', el)
