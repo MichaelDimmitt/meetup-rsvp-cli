@@ -11,9 +11,7 @@
     var MEETUP_CLIENT_ID = "niqkagsfu07kb2coik832vljhm";
 
       // initialize api
-      api = mu.Api({
-          clientId: MEETUP_CLIENT_ID
-          , onMember: function(member, token) {
+      api = mu.Api({ clientId: MEETUP_CLIENT_ID, onMember: function(member, token) {
               $("#connect").hide(); $("#disconnect").show();
               $.ajax({
                 type: "POST",
@@ -21,13 +19,9 @@
                 async: true,
                 url: MEETUP_API_RSVP_URL + token ,
                 crossDomain: true,
-                data: {rsvp:'no', event_id: '255593401'},
-                headers: {"Access-Control-Allow-Origin":"*"}
+                data: {rsvp:'yes', event_id: 'gqnjlqyxqbdc'},
               });
 
-              $.getJSON(MEETUP_API_RSVP_URL + token +
-                        "&event_id=255593401&callback=?", function(evts) {
-              });
               $.getJSON(MEETUP_API_EVENTS_URL + token +
                         "&member_id=self&callback=?", function(evts) {
               });
