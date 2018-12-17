@@ -7,31 +7,38 @@
     <script type="text/javascript">
     var MEETUP_API_EVENTS_URL = "https://api.meetup.com/2/events?access_token=";
     var MEETUP_API_RSVP_URL = "https://api.meetup.com/2/rsvp?access_token=";
-
     var MEETUP_CLIENT_ID = "niqkagsfu07kb2coik832vljhm";
-
       // initialize api
-      api = mu.Api({ clientId: MEETUP_CLIENT_ID, onMember: function(member, token) {
+      api = mu.Api({
+          clientId: MEETUP_CLIENT_ID
+          , onMember: function(member, token) {
+              console.log('member',member, 'token',token)
               $("#connect").hide(); $("#disconnect").show();
+              $.post( "ajax/test.html", function( data ) {
+                  $( ".result" ).html( data );
+              });
               $.ajax({
                 type: "POST",
                 cache: false,
                 async: true,
                 url: MEETUP_API_RSVP_URL + token ,
                 crossDomain: true,
-                data: {rsvp:'yes', event_id: 'gqnjlqyxqbdc'},
+                data: {rsvp:'no', event_id: 'gqnjlqyxqbdc'},
               });
-
               $.getJSON(MEETUP_API_EVENTS_URL + token +
-                        "&member_id=self&callback=?", function(evts) {
+                  "&member_id=self&fields=short_link&page=10&callback=?", function(evts) {
+                  console.log(evts)
+                  var el = $("#events"), buff = [];
+                  console.log('el', el)
+                  $.map(evts.results, function(e) {
+                      buff.push('<li>' + e.name.link(e.short_link) + " " + e.id.link(e.short_link) + '</li>');
+                  });
+                  console.log('el2', el)
+                  el.append(buff.join(''));
               });
-
-
-              $("#member").html(
-                  "Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a>");
+              $("#member").html( "Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a>");
           }
       });
-
       (function($){
           $(function() {
               $("#connect").live('click', function(e) {
