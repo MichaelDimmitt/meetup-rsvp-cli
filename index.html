@@ -7,9 +7,12 @@
     <script type="text/javascript">
     var MEETUP_API_EVENTS_URL = "https://api.meetup.com/2/events?access_token=";
     var MEETUP_API_RSVP_URL = "https://api.meetup.com/2/rsvp?access_token=";
-    // for local testing using 172.0.0.1 // var MEETUP_CLIENT_ID = "niqkagsfu07kb2coik832vljhm";
-    var MEETUP_CLIENT_ID = "ndioq3jd0me4s8d65lfp0vv69q";
+    var MEETUP_CLIENT_ID = "niqkagsfu07kb2coik832vljhm";
+    //var MEETUP_CLIENT_ID = "ndioq3jd0me4s8d65lfp0vv69q";
       // initialize api
+      function doit(){
+        console.log('hi')
+      }
       api = mu.Api({
           clientId: MEETUP_CLIENT_ID
           , onMember: function(member, token) {
@@ -39,7 +42,13 @@
                   console.log('el2', el)
                   el.append(buff.join(''));
               });
-              $("#member").html( "Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a>");
+            $("#member").html(
+              "<div> Hey " + member.name.link(member.link) + " | <a href='#' id='disconnect'>Logout</a> </div>" +
+              "<div>" +
+                "<button type=\"button\" onclick=\"doit()\">Click Me!</button>" +
+                "<button type=\"button\" onclick=\"alert('Hello world!')\">Click Me!</button>" +
+              "</div>"
+              );
           }
       });
       (function($){
